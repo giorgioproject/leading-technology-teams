@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper font-sans text-base text-ink antialiased dark:bg-paper-dark dark:text-ink-dark;
+    line-height: 1.6;
+  }
+
+  h1 {
+    @apply font-serif text-[2rem] font-semibold leading-[1.15] tracking-tight text-ink dark:text-ink-dark sm:text-[2.5rem] lg:text-[3rem];
+  }
+
+  h2 {
+    @apply font-serif text-[1.75rem] font-semibold leading-tight tracking-tight text-ink dark:text-ink-dark;
+  }
+
+  h3 {
+    @apply font-sans text-lg font-semibold leading-snug text-ink dark:text-ink-dark;
+  }
+
+  ::selection {
+    background: #e6efec;
+    color: #1f2937;
+  }
+}
+
+@layer components {
+  /* Small section labels: 13px, uppercase, tracked out, muted. */
+  .label {
+    @apply text-[13px] font-medium uppercase tracking-[0.05em] text-muted dark:text-muted-dark;
+  }
+}
+
+/* Darker text companions. Scoped to light mode so the dark: bright colors still win. */
+@media (prefers-color-scheme: light) {
+  .text-good-ink { color: #2c6b40; }
+  .text-warn-ink { color: #815012; }
+  .text-alert-ink { color: #9a3e32; }
+  .text-accent-ink { color: #815012; }
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: #1a2e29;
+    color: #f4f1ea;
+  }
+}
+
+@media print {
+  .site-header,
+  footer,
+  nav[aria-label='Workflow'],
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  body {
+    background: #fff !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .report-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
